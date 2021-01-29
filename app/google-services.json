@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "116634116903",
+    "project_id": "kenyaeducationfund-dd541",
+    "storage_bucket": "kenyaeducationfund-dd541.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116634116903:android:aa6cab6d42371dc5153f02",
+        "android_client_info": {
+          "package_name": "com.example.kenyaeducationfund"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116634116903-bqtgh8as0q4gra1gkb3hq4upr05a8hcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoqxFn-h9mWqRQ0VoQoFjj2kjOhxc99Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116634116903-bqtgh8as0q4gra1gkb3hq4upr05a8hcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

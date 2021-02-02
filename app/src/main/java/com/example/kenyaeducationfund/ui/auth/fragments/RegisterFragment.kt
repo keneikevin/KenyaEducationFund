@@ -33,18 +33,23 @@ class RegisterFragment: Fragment(R.layout.fragment_register) {
                     )
         }
         binding.tvLogin.setOnClickListener {
-
+            if(findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            } else findNavController().navigate(
+            RegisterFragmentDirections.globalActionCreatePostFragment()
+            )
         }
     }
 
     private fun subscribeToObservers() {
         viewModel.registerStatus.observe(viewLifecycleOwner, EventObserver(
-                onError = {
-                binding.registerProgressBar.isVisible= true
-                },
-                onLoading = { registerProgressBar.isVisible = true}
+            onError = {
+                registerProgressBar.isVisible = false
+                snackbar(it)
+            },
+            onLoading = { registerProgressBar.isVisible = true }
         ) {
-            binding.registerProgressBar.isVisible = false
+            registerProgressBar.isVisible = false
             snackbar(getString(R.string.success_registration))
         })
     }

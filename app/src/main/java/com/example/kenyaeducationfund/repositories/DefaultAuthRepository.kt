@@ -18,7 +18,6 @@ class DefaultAuthRepository:AuthRepository {
         username: String,
         password: String
     ): Resource<AuthResult> {
-        TODO("Not yet implemented")
         return withContext(Dispatchers.IO){
             safeCall {
                 val result = auth.createUserWithEmailAndPassword(email,password).await()

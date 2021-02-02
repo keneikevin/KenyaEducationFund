@@ -9,6 +9,6 @@ data class User(
         val profilePicture :String = DEFAULT_PROFILE_PICTURE,
         val description:String ="",
         val follows:List<String> = listOf(),
-        @Exclude
+        @get:Exclude
         var isFollowing:String ="",
 )

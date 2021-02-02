@@ -2,11 +2,9 @@ package com.example.kenyaeducationfund.ui.Main
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -18,26 +16,29 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
-class MainActivity:AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-       binding = ActivityMainBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment)
+                as NavHostFragment
+
         binding.bottomNavigationView.apply {
             background = null
             menu.getItem(2).isEnabled = false
             setupWithNavController(navHostFragment.findNavController())
             setOnNavigationItemReselectedListener { Unit }
         }
+
         binding.fabNewPost.setOnClickListener {
             navHostFragment.findNavController().navigate(
-                    R.id.globalActionCreatePostFrsgment
+                    R.id.globalActionCreatePostFragment
             )
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
@@ -51,9 +52,9 @@ class MainActivity:AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
-
     }
 }

@@ -24,7 +24,7 @@
         android:name="com.example.kenyaeducationfund.ui.Main.fragment.SettingsFragment"
         android:label="SettingsFragment" />
 
-    <action android:id="@+id/globalActionCreatePostFrsgment"
+    <action android:id="@+id/globalActionCreatePostFragment"
         app:destination="@+id/createPostFragment"/>
     <fragment
         android:id="@+id/profileFragment"

@@ -31,10 +31,10 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
 
     private val viewModel: CreatePostViewModel by viewModels()
 
-    private lateinit var cropContent: ActivityResultLauncher<String>
+    private lateinit var cropContent: ActivityResultLauncher<Any?>
 
-    private val cropActivityResultContract = object : ActivityResultContract<String, Uri?>() {
-        override fun createIntent(context: Context, input: String?): Intent {
+    private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri?>() {
+        override fun createIntent(context: Context, input: Any?): Intent {
             return CropImage.activity()
                 .setAspectRatio(16, 9)
                 .setGuidelines(CropImageView.Guidelines.ON)
@@ -62,10 +62,10 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
         binding = FragmentCreatePostBinding.bind(view)
         subscribeToObservers()
         binding.btnSetPostImage.setOnClickListener {
-            cropContent.launch("image/*")
+            cropContent.launch(null)
         }
         binding.ivPostImage.setOnClickListener {
-            cropContent.launch("image/*")
+            cropContent.launch(null)
         }
         binding.btnPost.setOnClickListener {
             curImageUri?.let { uri ->

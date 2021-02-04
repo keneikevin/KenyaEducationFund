@@ -72,7 +72,7 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
                 viewModel.createPost(uri, binding.etPostDescription.text.toString())
             } ?: snackbar(getString(R.string.error_no_image_chosen))
         }
-        slideUpViews(requireContext(),binding.ivPostImage,binding.btnSetPostImage,binding.btnPost)
+        slideUpViews(requireContext(),binding.ivPostImage,binding.btnSetPostImage,binding.tilPostText,binding.btnPost)
     }
 
     private fun subscribeToObservers() {

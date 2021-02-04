@@ -5,5 +5,5 @@ object Constants {
     const val MIN_USER_NAME = 3
     const val MAX_USER_NAME = 8
     const val MIN_PASSWORD_LENGTH= 8
-
+    const val SEARCH_TIME_DELAY =500L
 }

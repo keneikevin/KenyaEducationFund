@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 @AndroidEntryPoint
-open class ProfileFragment :BasePostFragment(R.layout.fragment_profile){
+open class  ProfileFragment :BasePostFragment(R.layout.fragment_profile){
     override val postProgressBar: ProgressBar
         get() = profilePostsProgressBar
     override val basePostViewModel: BasePostViewModel

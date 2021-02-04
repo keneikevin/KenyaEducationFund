@@ -5,10 +5,14 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
+import com.example.kenyaeducationfund.R
 import com.example.kenyaeducationfund.adapters.PostAdapter
+import com.example.kenyaeducationfund.adapters.UserAdapter
 import com.example.kenyaeducationfund.other.EventObserver
 import com.example.kenyaeducationfund.ui.Main.dialogues.DeletePostDialog
+import com.example.kenyaeducationfund.ui.Main.dialogues.LikedByDialog
 import com.example.kenyaeducationfund.ui.Main.viewmodels.BasePostViewModel
 import com.example.kenyaeducationfund.ui.snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -39,10 +43,25 @@ abstract class BasePostFragment(layoutId: Int): Fragment(layoutId) {
             }.show(childFragmentManager,null)
 
         }
-
+        postAdapter.setOnLikedByClickListener { post ->
+            basePostViewModel.getUsers(post.likedBy)
+        }
+        postAdapter.setOnCommentsClickListener { comment->
+            findNavController().navigate(
+                R.id.globalActionToCommentDialog,
+                Bundle().apply { putString("postId",comment.id) }
+            )
+        }
     }
     private fun subscribeToObservers(){
+        basePostViewModel.likedByUsers.observe(viewLifecycleOwner,EventObserver(
+            onError = {snackbar(it)}
+        ){users->
+            val userAdapter = UserAdapter(glide)
+            userAdapter.users = users
+            LikedByDialog(userAdapter).show(childFragmentManager, null)
 
+        })
     basePostViewModel.likePostStatus.observe(viewLifecycleOwner, EventObserver(
             onError = {
             curLikedIndex?.let{ index ->
@@ -63,6 +82,7 @@ abstract class BasePostFragment(layoutId: Int): Fragment(layoutId) {
     val uid = FirebaseAuth.getInstance().uid!!
             postAdapter.posts[index].apply {
                 this.isLiked = isLiked
+                isLiking = false
                 if (isLiked){
                     likedBy += uid
                 } else {

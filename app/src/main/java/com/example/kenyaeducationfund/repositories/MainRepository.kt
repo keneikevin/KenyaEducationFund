@@ -1,6 +1,7 @@
 package com.example.kenyaeducationfund.repositories
 
 import android.net.Uri
+import com.example.kenyaeducationfund.data.entities.Comment
 import com.example.kenyaeducationfund.data.entities.Post
 import com.example.kenyaeducationfund.data.entities.User
 import com.example.kenyaeducationfund.other.Resource
@@ -22,4 +23,9 @@ interface MainRepository {
     suspend fun getPostsForProfile(uid: String):Resource<List<Post>>
 
     suspend fun toggleFollowForUser(uid:String):Resource<Boolean>
+
+    suspend fun searchUser(query:String):Resource<List<User>>
+    suspend fun createComment(commentText:String, postId:String):Resource<Comment>
+    suspend fun deleteComment(comment: Comment):Resource<Comment>
+    suspend fun getCommentForPost(PostId:String):Resource<List<Comment>>
 }
